@@ -5,6 +5,7 @@ Second Bailout Wallet is a static frontend with a BRC100-backed secp256k1 key mo
 - No XRP seed, family seed, mnemonic, or private key is accepted, generated, exported, or stored.
 - The BRC100 wallet derives the chain-specific key and signs only a 32-byte XRPL SHA-512Half supplied through `hashToDirectlySign`.
 - The app supports only native XRP `Payment` transactions. It does not enable partial payments, issued currencies, trust lines, account configuration, regular keys, or multisigning.
+- The signer uses an explicit transaction-field allowlist and rejects `Flags`, `DeliverMin`, memos, or any other field the app did not construct.
 - The account must match the address derived from the signing public key.
 - Fees above 0.1 XRP are rejected before signing.
 - `LastLedgerSequence` is populated by the live XRPL server so a stale payment cannot remain valid forever.

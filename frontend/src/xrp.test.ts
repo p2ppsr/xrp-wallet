@@ -139,4 +139,27 @@ describe('Second Bailout XRP cryptography', () => {
     )).toBe(true)
     expect(signed.txid).toMatch(/^[0-9A-F]{64}$/)
   })
+
+  it('refuses non-bounded payment fields and missing last-ledger limits', async () => {
+    const wallet = new ProtoWallet(PrivateKey.fromHex('5'.padStart(64, '0')))
+    const { publicKey } = await wallet.getPublicKey({
+      protocolID: XRP_PROTOCOL_ID,
+      keyID: XRP_KEY_ID,
+      counterparty: 'self'
+    })
+    const identity = publicKeyToXrpIdentity(publicKey)
+    await expect(signXrpTransaction({
+      wallet: wallet as unknown as Parameters<typeof signXrpTransaction>[0]['wallet'],
+      publicKey: identity.publicKey,
+      transaction: { ...fixturePayment(identity.address), Flags: 0x00020000 }
+    })).rejects.toThrow(/Unsupported XRPL field: Flags/)
+
+    const withoutLastLedger = fixturePayment(identity.address)
+    delete withoutLastLedger.LastLedgerSequence
+    await expect(signXrpTransaction({
+      wallet: wallet as unknown as Parameters<typeof signXrpTransaction>[0]['wallet'],
+      publicKey: identity.publicKey,
+      transaction: withoutLastLedger
+    })).rejects.toThrow(/last-ledger limit/)
+  })
 })

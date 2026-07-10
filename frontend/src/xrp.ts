@@ -150,6 +150,20 @@ export const signXrpTransaction = async (params: {
   publicKey: string
   transaction: Payment
 }): Promise<SignedXrpTransaction> => {
+  const allowedFields = new Set([
+    'TransactionType',
+    'Account',
+    'Destination',
+    'DestinationTag',
+    'Amount',
+    'Fee',
+    'Sequence',
+    'LastLedgerSequence'
+  ])
+  const unsupportedField = Object.keys(params.transaction).find(field => !allowedFields.has(field))
+  if (unsupportedField != null) {
+    throw new Error(`Unsupported XRPL field: ${unsupportedField}`)
+  }
   const identity = publicKeyToXrpIdentity(params.publicKey)
   if (params.transaction.Account !== identity.address) {
     throw new Error('Transaction account does not match the BRC100 signing key')
@@ -160,7 +174,29 @@ export const signXrpTransaction = async (params: {
   if (typeof params.transaction.Amount !== 'string') {
     throw new Error('Only native XRP payments are supported')
   }
-  if (BigInt(params.transaction.Fee ?? '0') > MAX_FEE_DROPS) {
+  if (!/^\d+$/.test(params.transaction.Amount) || BigInt(params.transaction.Amount) <= 0n) {
+    throw new Error('Native XRP Payment amount must be positive drops')
+  }
+  if (!isValidClassicAddress(params.transaction.Destination)) {
+    throw new Error('Payment destination must be a resolved classic XRP address')
+  }
+  if (params.transaction.DestinationTag != null && (
+    !Number.isInteger(params.transaction.DestinationTag) ||
+    params.transaction.DestinationTag < 0 ||
+    params.transaction.DestinationTag > 0xffffffff
+  )) {
+    throw new Error('Payment destination tag is outside uint32 range')
+  }
+  if (typeof params.transaction.Fee !== 'string' || !/^\d+$/.test(params.transaction.Fee) || BigInt(params.transaction.Fee) <= 0n) {
+    throw new Error('Autofilled XRPL fee is missing or invalid')
+  }
+  if (!Number.isInteger(params.transaction.Sequence) || Number(params.transaction.Sequence) < 0) {
+    throw new Error('Autofilled XRPL sequence is missing or invalid')
+  }
+  if (!Number.isInteger(params.transaction.LastLedgerSequence) || Number(params.transaction.LastLedgerSequence) <= 0) {
+    throw new Error('Autofilled XRPL last-ledger limit is missing or invalid')
+  }
+  if (BigInt(params.transaction.Fee) > MAX_FEE_DROPS) {
     throw new Error(`Network fee exceeds the ${formatDrops(MAX_FEE_DROPS)} XRP safety cap`)
   }
 
