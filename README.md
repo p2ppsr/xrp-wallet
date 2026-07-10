@@ -48,9 +48,12 @@ npm run frontend:test
 npm run frontend:build
 npm run frontend:qa
 npm --prefix frontend run test:live
+npm --prefix frontend run test:testnet-proof
 ```
 
 The unit suite runs against the real `ProtoWallet` and independently checks XRPL encoding/signature acceptance. Responsive Playwright QA covers desktop, tablet, wide-short, and mobile layouts for console errors and horizontal overflow.
+
+`test:testnet-proof` is manual-only: it asks the official XRPL testnet faucet to fund an ephemeral address derived from the same BRC100 namespace, signs a real payment through `ProtoWallet.createSignature`, submits it, and requires a validated `tesSUCCESS`. It never uses production funds or a persistent private key.
 
 ## Deployment
 

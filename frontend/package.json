@@ -10,6 +10,7 @@
     "preview": "vite preview --host 127.0.0.1",
     "test": "vitest",
     "test:live": "node scripts/xrpl-smoke.mjs",
+    "test:testnet-proof": "XRPL_TESTNET_PROOF=1 vitest --run src/xrp.testnet.test.ts",
     "qa:responsive": "playwright test --config playwright.config.ts"
   },
   "dependencies": {

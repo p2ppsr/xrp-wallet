@@ -23,7 +23,7 @@ The XRPL library's `deriveAddress` performs steps 3–4. No seed or private key 
 2. Build a native XRP `Payment`; issued-currency amounts and partial-payment flags are not supported.
 3. Ask the live XRPL server to fill `Fee`, `Sequence`, and `LastLedgerSequence`.
 4. Reject any fee above the wallet's 0.1 XRP safety cap.
-5. Require positive native drops, a resolved classic destination, a valid optional uint32 destination tag, and live `Fee`, `Sequence`, and `LastLedgerSequence`; reject every other transaction field.
+5. Require positive native drops, a resolved classic destination, a valid optional uint32 destination tag, zero flags, and live `Fee`, `Sequence`, and `LastLedgerSequence`; reject every other transaction field.
 6. Set `SigningPubKey` to the compressed BRC100-derived public key and serialize with XRPL `encodeForSigning`.
 7. Compute SHA-512 over those signing bytes and keep the first 256 bits (XRPL SHA-512Half).
 8. Pass that exact 32-byte digest to BRC100 `createSignature` as `hashToDirectlySign`.

@@ -152,7 +152,13 @@ describe('Second Bailout XRP cryptography', () => {
       wallet: wallet as unknown as Parameters<typeof signXrpTransaction>[0]['wallet'],
       publicKey: identity.publicKey,
       transaction: { ...fixturePayment(identity.address), Flags: 0x00020000 }
-    })).rejects.toThrow(/Unsupported XRPL field: Flags/)
+    })).rejects.toThrow(/Payment flags must be zero/)
+
+    await expect(signXrpTransaction({
+      wallet: wallet as unknown as Parameters<typeof signXrpTransaction>[0]['wallet'],
+      publicKey: identity.publicKey,
+      transaction: { ...fixturePayment(identity.address), NetworkID: 42 }
+    })).rejects.toThrow(/NetworkID must be omitted/)
 
     const withoutLastLedger = fixturePayment(identity.address)
     delete withoutLastLedger.LastLedgerSequence

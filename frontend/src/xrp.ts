@@ -156,9 +156,11 @@ export const signXrpTransaction = async (params: {
     'Destination',
     'DestinationTag',
     'Amount',
+    'Flags',
     'Fee',
     'Sequence',
-    'LastLedgerSequence'
+    'LastLedgerSequence',
+    'NetworkID'
   ])
   const unsupportedField = Object.keys(params.transaction).find(field => !allowedFields.has(field))
   if (unsupportedField != null) {
@@ -186,6 +188,12 @@ export const signXrpTransaction = async (params: {
     params.transaction.DestinationTag > 0xffffffff
   )) {
     throw new Error('Payment destination tag is outside uint32 range')
+  }
+  if (params.transaction.Flags != null && params.transaction.Flags !== 0) {
+    throw new Error('XRPL Payment flags must be zero')
+  }
+  if (params.transaction.NetworkID != null) {
+    throw new Error('XRPL NetworkID must be omitted for this mainnet wallet')
   }
   if (typeof params.transaction.Fee !== 'string' || !/^\d+$/.test(params.transaction.Fee) || BigInt(params.transaction.Fee) <= 0n) {
     throw new Error('Autofilled XRPL fee is missing or invalid')
