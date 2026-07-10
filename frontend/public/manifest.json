@@ -1,0 +1,42 @@
+{
+  "name": "Second Bailout Wallet",
+  "short_name": "2nd Bailout",
+  "description": "A native XRP wallet powered by BRC100 Metanet wallet signatures.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#05070b",
+  "theme_color": "#05070b",
+  "metanet": {
+    "schemaVersion": 1,
+    "groupPermissions": {
+      "description": "Permission to derive and use the XRP secp256k1 signing key.",
+      "protocolPermissions": [
+        {
+          "protocolID": [1, "xrp wallet"],
+          "description": "Derive the XRP account and sign exact XRPL Payment hashes."
+        }
+      ]
+    }
+  },
+  "babbage": {
+    "schemaVersion": 1,
+    "groupPermissions": {
+      "description": "Permission to derive and use the XRP secp256k1 signing key.",
+      "protocolPermissions": [
+        {
+          "protocolID": [1, "xrp wallet"],
+          "description": "Derive the XRP account and sign exact XRPL Payment hashes."
+        }
+      ]
+    }
+  },
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

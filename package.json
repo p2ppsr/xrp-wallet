@@ -1,0 +1,22 @@
+{
+  "name": "@p2ppsr/xrp-wallet",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Second Bailout Wallet: frontend-only BRC100 XRP wallet for the Metanet.",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "scripts": {
+    "lars": "lars",
+    "cars": "cars",
+    "start": "lars start",
+    "frontend:dev": "npm --prefix frontend run start",
+    "frontend:build": "npm --prefix frontend run build",
+    "frontend:test": "npm --prefix frontend run test -- --run",
+    "frontend:qa": "npm --prefix frontend run qa:responsive",
+    "build": "cars build 1",
+    "deploy": "cars release now 1"
+  },
+  "devDependencies": {
+    "@p2ppsr/cars-cli": "^1.2.13",
+    "@p2ppsr/lars": "^1.5.11"
+  }
+}

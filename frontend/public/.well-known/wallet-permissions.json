@@ -1,0 +1,12 @@
+{
+  "name": "Second Bailout Wallet",
+  "domain": "xrp.metanet.app",
+  "description": "Native XRP wallet using a chain-specific BRC100 secp256k1 key.",
+  "protocols": [
+    {
+      "protocolID": [1, "xrp wallet"],
+      "keyID": "1",
+      "description": "Derive the XRP account and sign exact XRPL Payment hashes."
+    }
+  ]
+}

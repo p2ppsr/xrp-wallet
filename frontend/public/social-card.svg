@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#05070b"/><stop offset=".6" stop-color="#071c2b"/><stop offset="1" stop-color="#1a0d2b"/></linearGradient>
+    <linearGradient id="x" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#31d9ff"/><stop offset="1" stop-color="#a377ff"/></linearGradient>
+    <pattern id="grid" width="52" height="52" patternUnits="userSpaceOnUse"><path d="M52 0H0v52" fill="none" stroke="#89dcff" stroke-opacity=".08"/></pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/><rect width="1200" height="630" fill="url(#grid)"/>
+  <text x="70" y="78" fill="#31d9ff" font-family="monospace" font-size="18" letter-spacing="4">03 / JAN / 2009 · LIQUIDITY FACILITY № 0002</text>
+  <text x="70" y="205" fill="#eef8ff" font-family="Arial, sans-serif" font-size="76" font-weight="900">BECOME THE</text>
+  <text x="70" y="295" fill="url(#x)" font-family="Arial, sans-serif" font-size="88" font-weight="900">SECOND BAILOUT.</text>
+  <text x="73" y="366" fill="#b8cad7" font-family="Arial, sans-serif" font-size="25">Native XRP. BRC100 custody. No seed export. No vault.</text>
+  <g transform="translate(825 122)"><rect width="290" height="330" rx="10" fill="#d8f4fa" opacity=".94" stroke="#31d9ff"/><rect x="12" y="12" width="266" height="306" fill="none" stroke="#073240" stroke-opacity=".35" stroke-dasharray="4 5"/><text x="26" y="48" fill="#073240" font-family="monospace" font-size="13">TOO DECENTRALIZED</text><text x="26" y="67" fill="#073240" font-family="monospace" font-size="13">TO FAIL</text><text x="145" y="182" text-anchor="middle" fill="#073240" font-family="Arial" font-size="132" font-weight="900">∞</text><text x="26" y="270" fill="#073240" font-family="monospace" font-size="12">PAY TO THE ORDER OF</text><text x="26" y="292" fill="#073240" font-family="monospace" font-size="16" font-weight="700">WHOEVER HAS THE KEYS</text></g>
+  <text x="72" y="548" fill="#eef8ff" font-family="Arial" font-size="25" font-weight="700">SECOND BAILOUT WALLET</text>
+  <text x="72" y="582" fill="#8fa4b8" font-family="monospace" font-size="17">xrp.metanet.app</text>
+</svg>
