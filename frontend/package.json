@@ -35,6 +35,7 @@
   "overrides": {
     "satoshi-shop-client": {
       "@bsv/sdk": "^2.1.6"
-    }
+    },
+    "@bsv/sdk": "$@bsv/sdk"
   }
 }
