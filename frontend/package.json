@@ -14,8 +14,8 @@
     "qa:responsive": "playwright test --config playwright.config.ts"
   },
   "dependencies": {
-    "@babbage/go": "^0.1.17",
-    "@bsv/sdk": "^2.1.6",
+    "@babbage/go": "^0.1.19",
+    "@bsv/sdk": "^2.4.0",
     "lucide-react": "^0.440.0",
     "qrcode.react": "^4.2.0",
     "react": "^18.3.1",
